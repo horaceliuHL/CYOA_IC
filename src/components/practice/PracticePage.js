@@ -5,6 +5,7 @@ import {
     Col,
     Button,
     Navbar,
+    Image,
 } from 'react-bootstrap';
 import './PracticePage.css'
 import {Input, Slider} from '@material-ui/core';
@@ -211,7 +212,10 @@ export default function PracticePage () {
         </> :
         <>
         <Navbar bg="dark" variant="dark" sticky="top">
-            <Navbar.Brand >Stony Brook Investment Club</Navbar.Brand>
+            <Navbar.Brand style={{marginBottom: -12, marginTop: -12}}>
+                <Image width="40" src={"https://res.cloudinary.com/dbgv4iow6/image/upload/v1612912597/Buffetts-Summit/Logo-02_bpucce.png"}/>
+                <Image width="200" src={"https://res.cloudinary.com/dbgv4iow6/image/upload/v1612912593/Buffetts-Summit/Logo-09_ivdlit.png"}/>
+            </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>You currently have ${totalMoney}</Navbar.Text>
