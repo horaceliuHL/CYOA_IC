@@ -1,0 +1,63 @@
+6Z4YFLVHTK2875ANWDR0QS9M3UXJG1PBICEO
+JL4P3V6R0QF2HB8NI7OUYCW5GE9KDTM1XZAS
+Y1PTBQKOD8NJZ20ES35W6I4FCAGUVHM97LXR
+HO430YNZ15VGIQJ2F89BEKRU7LACPDXSW6MT
+HZE2M41W7FX38SAPDJIYK0596BVLNGCURQOT
+CVOXPS2E9W0KJ7DRNHGY8I45M1BL3FZTQAU6
+A6748V2ZPLQWIOHJK03BGUESDNRMCXY9T15F
+UKNXCZJAD8EO1HM6P9I5WVQGBFS237Y0LRT4
+J86X1UD03B2Y49LQZA7KCVIMNEHSFG5TOPWR
+UNAP3R6J4T7HY8X2D0WC1QIZGOKBVFS59LME
+
+abcdefghijklmnopqrstuvwxyz0123456789
+
+10 different variations of the alphanumeric sequence
+
+To encode: Take the string, generate 2 random numbers between 0 and 9, and for even numbers, 
+    use the hashed alphanumeric sequence of the first random number in the alphanumeric list, and for odd numbers, 
+    use the hashed alphanumeric sequence of the second random number in the alphanumeric list, then add the two random
+    numbers that were used to the end of the string after it is encoded, and then add 5 random letters to both sides 
+    of the string.
+
+To decode: Remove 5 letters from each side of the string, and after, take the two numbers at the end of the cut string.
+    The first number is for even letters, the second number is for odd letters, and the numbers are used to find the 
+    index of the hashed alphanumeric sequence used in the alphanumeric list, then I compare the sorted letters against
+    the hashed alphanumeric sequence, and I get the original string.
+
+
+Program in Java to decode the code given:
+
+import java.util.*;
+public class Tester1 {
+	public static void main (String [] args) {
+		String [] rearrangedCodes = {"6Z4YFLVHTK2875ANWDR0QS9M3UXJG1PBICEO", 
+				"JL4P3V6R0QF2HB8NI7OUYCW5GE9KDTM1XZAS", 
+				"Y1PTBQKOD8NJZ20ES35W6I4FCAGUVHM97LXR", 
+				"HO430YNZ15VGIQJ2F89BEKRU7LACPDXSW6MT", 
+				"HZE2M41W7FX38SAPDJIYK0596BVLNGCURQOT", 
+				"CVOXPS2E9W0KJ7DRNHGY8I45M1BL3FZTQAU6", 
+				"A6748V2ZPLQWIOHJK03BGUESDNRMCXY9T15F", 
+				"UKNXCZJAD8EO1HM6P9I5WVQGBFS237Y0LRT4", 
+				"J86X1UD03B2Y49LQZA7KCVIMNEHSFG5TOPWR", 
+				"UNAP3R6J4T7HY8X2D0WC1QIZGOKBVFS59LME"};
+		String alphanumeric = "abcdefghijklmnopqrstuvwxyz0123456789";
+		Scanner s = new Scanner (System.in);
+		System.out.println("Enter your generated code: ");
+		String str = s.nextLine();
+		str = str.substring(5, str.length() - 5);
+		int num1 = str.charAt(str.length() - 1) - '0';
+		int num = str.charAt(str.length() - 2) - '0';
+		str = str.substring(0, str.length() - 2);
+		String result = "";
+		for (int i = 0; i < str.length(); i++) {
+			if (i%2 == 0) {
+				result += alphanumeric.charAt(rearrangedCodes[num].indexOf(str.charAt(i)));
+			} else {
+				result += alphanumeric.charAt(rearrangedCodes[num1].indexOf(str.charAt(i)));
+			}
+		}
+		System.out.println(result);
+		s.close();
+	}
+
+}
